@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>WRITING.COM.UZ - TYPING Assistant</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NE3SQG8GQG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NE3SQG8GQG');
+</script>
+
+<link rel="icon" type="img/gif/png" href="logo.png">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="writing, essay, toefl, ielts, cefr" />
+<meta name="description" content="Welcome to WRITING.COM.UZ, the ultimate platform for mastering essay writing for English proficiency exams like TOEFL, IELTS, and CEFR. Designed with students and test-takers in mind, our website provides everything you need to excel in the writing section." />
+<meta name="author" content="Mizano and Odilxanivich" />
+<meta name="google-site-verification" content="M8reBupZwgb_x4AlaQK17MFYWx_Wbz-ebNXsGqijdKI" />
+
+
+<script>
+  if (navigator.userAgent.includes('Telegram')) {
+      window.location.href = 'https://writing.com.uz/'; // Redirect to the main site.
+  }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background: #4a90e2;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    section {
+      background: white;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-top: 0;
+    }
+    textarea {
+      width: 98%;
+      min-height: 200px;
+      resize: vertical;
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    button {
+      background: #4a90e2;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin: 0.25rem 0;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    button:hover {
+      background: #357abd;
+    }
+    .output {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 0.5rem;
+      border-radius: 5px;
+      min-height: 100px;
+      white-space: pre-wrap;
+    }
+    .footer{color: #475569;text-align:center;padding:24px 0}
+
+    .container {
+    padding: 0;
+  }
+  .band-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+  }
+  .band-table th, .band-table td {
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    text-align: left;
+    vertical-align: top;
+  }
+  .band-table th {
+    background: #0070c0;
+    color: white;
+    font-weight: 600;
+  }
+  .band-table td {
+    background: #fff;
+  }
+  .band-score {
+    width: 60px;
+    font-weight: bold;
+    text-align: center;
+  }
+  @media (max-width: 768px) {
+    .band-table, .band-table thead, .band-table tbody, .band-table th, .band-table td, .band-table tr {
+      display: block;
+    }
+    .band-table tr {
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #ddd;
+    }
+    .band-table td {
+      padding-left: 50%;
+      position: relative;
+    }
+    .band-table td:before {
+      position: absolute;
+      left: 1rem;
+      top: 0.75rem;
+      font-weight: bold;
+    }
+    .band-table td:nth-of-type(1):before { content: "Band"; }
+    .band-table td:nth-of-type(2):before { content: "Task 1"; }
+    .band-table td:nth-of-type(3):before { content: "Task 2"; }
+    .band-table th {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>IELTS Task 2 Structured Practice Hub</h1>
+    <p>Open Source by Mizano - www.writing.com.uz</p>
+  </header>
+  <main>
+    <section>
+  <h2>Candidate Name</h2>
+  <input 
+    type="text" 
+    id="nameInput" 
+    placeholder="Enter your full name..." 
+    style="width:98%; padding:0.5rem; font-size:1rem; border:1px solid #ccc; border-radius:5px;"
+  />
+</section>
+
+    <section>
+      <h2>1. Enter Essay Question</h2>
+      <textarea id="questionInput" placeholder="Paste your IELTS Task 2 question here..."></textarea>
+    </section>
+
+    <section>
+      <h2>2. Plan Your Essay</h2>
+      <textarea id="planInput" placeholder="Write outline: Introduction, Body 1, Body 2, Conclusion..."></textarea>
+    </section>
+
+    <section>
+      <h2>3. Write Your Essay</h2>
+      <textarea id="essayInput" placeholder="Start drafting your full essay here..."></textarea>
+      <button onclick="countWords()">Check Word Count</button>
+      <button onclick="downloadPDF()">Download as PDF</button>
+      <div id="wordCount" class="output">Word Count: 0</div>
+    </section>
+
+    <section>
+      <h2>4. Band Checklist</h2>
+      <p>Use this checklist to self-assess:</p>
+      <ul>
+        <li>Clear position throughout</li>
+        <li>Well-organized with linking devices</li>
+        <li>Examples and explanations support ideas</li>
+        <li>Wide range of vocabulary and grammar</li>
+        <li>At least 250 words</li>
+      </ul>
+    </section>
+
+    <div class="container">
+  <table class="band-table">
+    <thead>
+      <tr>
+        <th>Band</th>
+        <th>Task 1</th>
+        <th>Task 2</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="band-score">9</td>
+        <td>Fully satisfies all requirements; clear, coherent, sophisticated vocabulary and structures; error-free or rare slips.</td>
+        <td>Fully addresses all requirements; fully developed response; seamless cohesion; sophisticated vocabulary and grammar.</td>
+      </tr>
+      <tr>
+        <td class="band-score">8</td>
+        <td>Covers all requirements; clear overview; well-organized; minor errors in complex structures or vocabulary.</td>
+        <td>Covers all requirements; logical progression; wide and flexible vocabulary; mostly error-free complex sentences.</td>
+      </tr>
+      <tr>
+        <td class="band-score">7</td>
+        <td>Addresses task well; presents overview; clear main features; some errors in grammar or word choice.</td>
+        <td>Addresses task well; logical organization; adequate vocabulary; some minor errors.</td>
+      </tr>
+      <tr>
+        <td class="band-score">6</td>
+        <td>Addresses requirements generally; presents overview; cohesion may be mechanical; frequent vocabulary or grammar errors.</td>
+        <td>Generally addresses requirements; coherent but may be mechanical; adequate vocabulary with frequent errors.</td>
+      </tr>
+      <tr>
+        <td class="band-score">5</td>
+        <td>Partially addresses task; limited overview; simple structures; errors may cause strain.</td>
+        <td>Partially addresses task; simple organization; limited vocabulary and structures; errors may cause strain.</td>
+      </tr>
+      <tr>
+        <td class="band-score">4</td>
+        <td>Attempts task but misses key features; poor organization; limited vocabulary; frequent errors.</td>
+        <td>Attempts task; poor cohesion; limited vocabulary; frequent grammar errors.</td>
+      </tr>
+      <tr>
+        <td class="band-score">3</td>
+        <td>Fails to address task; irrelevant or repetitive; very limited vocabulary; meaning often distorted.</td>
+        <td>Fails to address task; irrelevant/repetitive ideas; very limited vocabulary; frequent grammar errors.</td>
+      </tr>
+      <tr>
+        <td class="band-score">2</td>
+        <td>Barely communicates; extremely limited vocabulary and grammar.</td>
+        <td>Barely communicates; minimal language control.</td>
+      </tr>
+      <tr>
+        <td class="band-score">1</td>
+        <td>Only isolated words; no sentence forms.</td>
+        <td>Only isolated words; no meaningful sentences.</td>
+      </tr>
+      <tr>
+        <td class="band-score">0</td>
+        <td>No response</td>
+        <td>No response</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  </main>
+  <div class="footer">Built for focused IELTS practice — no logins, no ads. Data saves locally in your browser.</div>
+  <script>
+    function countWords() {
+      const text = document.getElementById('essayInput').value.trim();
+      const words = text === '' ? 0 : text.split(/\s+/).length;
+      document.getElementById('wordCount').textContent = 'Word Count: ' + words;
+    }
+
+    function loadSample(band) {
+      let sample = '';
+      if (band === 7.5) {
+        sample = "Band 7.5 Essay Example: Clear arguments, good structure, but some limited vocabulary or repetitive grammar.";
+      } else if (band === 9) {
+        sample = "Band 9 Essay Example: Fully developed ideas, flawless cohesion, precise vocabulary, and highly flexible grammar.";
+      }
+      document.getElementById('sampleOutput').textContent = sample;
+    }
+
+
+
+    //save pdf
+    function getEssayContent() {
+  const name = document.getElementById('nameInput').value || "Anonymous";
+  const question = document.getElementById('questionInput').value;
+  const plan = document.getElementById('planInput').value;
+  const essay = document.getElementById('essayInput').value;
+  return `IELTS Task 2 Practice\n\nQuestion:\n${question}\n\nPlan:\n${plan}\n\nEssay:\n${essay}`;
+}
+
+function downloadTxt() {
+  const content = getEssayContent();
+  const blob = new Blob([content], { type: "text/plain" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "IELTS_Essay.txt";
+  link.click();
+}
+
+async function downloadPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  const name = document.getElementById('nameInput').value || "Anonymous";
+  doc.setFontSize(16);
+  doc.text(name, 105, 15, { align: "center" }); // centered top
+
+  const content = getEssayContent();
+  const lines = doc.splitTextToSize(content, 180); // wrap text
+  doc.setFontSize(12);
+
+  doc.text(lines, 10, 10);
+
+  // Add watermark
+    doc.setFontSize(30);
+    doc.setTextColor(200, 200, 200); // light grey
+    doc.text("www.writing.com.uz", 35, 150, { angle: 45 });
+
+  doc.save("www.writing.com.uz.pdf");
+}
+  </script>
+</body>
+</html>

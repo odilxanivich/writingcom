@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<title>WRITING.COM.UZ - Your Writing Assistant</title>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NE3SQG8GQG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NE3SQG8GQG');
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="img/gif/png" href="logo.png">
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="writing, essay, toefl, ielts, cefr" />
+<meta name="description" content="Welcome to WRITING.COM.UZ, the ultimate platform for mastering essay writing for English proficiency exams like TOEFL, IELTS, and CEFR. Designed with students and test-takers in mind, our website provides everything you need to excel in the writing section." />
+<meta name="author" content="Mizano and Odilxanivich" />
+<meta name="google-site-verification" content="M8reBupZwgb_x4AlaQK17MFYWx_Wbz-ebNXsGqijdKI" />
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet">
+<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://kit.fontawesome.com/c6dd78be41.js" crossorigin="anonymous"></script>
+<script>
+  if (navigator.userAgent.includes('Telegram')) {
+      window.location.href = 'https://writing.com.uz/'; // Redirect to the main site.
+  }
+</script>
+</head>
+
+<body>
+<nav>
+<div class="nav-bar">
+            <i class='bx bx-menu sidebarOpen' ></i>
+            <span class="logo navLogo"><a href="index.html">Writing.com.uz</a></span>
+            <div class="menu">
+            <div class="logo-toggle">
+            <span class="logo"><a href="index.html">Writing.com.uz</a></span>
+            <i class='bx bx-x siderbarClose'></i>
+            </div>
+<!--Nav bar for sections-->
+            <ul class="nav-links">
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="task1.html"><i class="fa-solid fa-chart-column"></i> Task 1 Help</a></li>
+            <li><a href="task2.html"><i class="fa-solid fa-pen-nib"></i> Task 2 Help</a></li>
+            <li><a href="essaytyper.html"><i class="fa-solid fa-paper-plane"></i> Typing</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+            </ul>
+</div>
+<div class="darkLight-searchBox">
+            <div class="dark-light">
+            <i class='bx bx-moon moon'></i>
+            <i class='bx bx-sun sun'></i>
+            </div>
+            <div class="searchBox">
+            <div class="searchToggle">
+            <i class='bx bx-x cancel'></i>
+            <i class='bx bx-search search'></i>
+            </div>
+            <div class="search-field">
+            <input type="text" id="searchInput" placeholder="Search by title or author..." oninput="filterEssays()">
+            <i class='bx bx-search'></i>
+            </div>
+            </div>
+</div>
+</nav>
+<div class="search-container" style="padding-top: 5rem;">
+</div>
+
+<!--News--->
+<div class="live-topic-box">
+  <h2>News</h2>
+  <h3 id="liveTopic"></h3>
+</div>
+
+<!-- Modal -->
+<div id="essayModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h1 id="modalTitle"></h1>
+    <h2 id="modalAuthor"></h2>
+    <h3 id="modalType"></h3>
+    <h3 id="modalAdvantage"></h3>
+    <h4 id="modalWordCount"></h4>
+    <h4 id="modalBandScore"></h4>
+    <div id="modalEssay"></div>
+    <button class="printBtn">Print</button>
+  </div>
+</div>
+
+
+<!--Essay boxes-->
+<div class="folder-grid" id="folderGrid"></div>
+<button class="more-button" onclick="loadMore()">More</button>
+
+<footer>
+   <ul>
+    <li><a href="https://t.me/odilxanivich">Telegram</a></li>
+    <li><a href="https://mizano.netlify.app/">Mizano</a></li>
+    <li><a href="mailto:odilxanivich@gmail.com">Email</a></li>
+    <li><a href="https://www.instagram.com/odilxanivich_/">Instagram</a></li>
+    <li><a href="https://www.youtube.com/@odilxanivich">Youtube</a></li>
+  </ul>
+</footer>
+
+<script>
+  const essays = [
+    { title: "Shopping malls as leisure spaces", author: "Miss NAVBAHOR", tag: "IELTS", score: "8.0", type: "Task 2", link: "essay/index61.html" },
+    { title: "Charity organizations", author: "SALMONXON", tag: "IELTS", score: "7.5", type: "Task 2", link: "essay/index60.html" },
+    { title: "Environment Damage", author: "SIMON", tag: "IELTS", score: "8.0", type: "Task 2", link: "essay/index1.html" },
+    { title: "Internet Users", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 1", link: "essay/index35.html" },
+    { title: "Gender Equality in Uni", author: "SIMON", tag: "CEFR", score: "C2", type: "Task 2", link: "essay/index9.html" },
+    { title: "Traffic Congestion", author: "MACMILLIAN", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index34.html" },
+    { title: "Decision Making", author: "B.MIRAKHMEDOV", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index3.html" },
+    { title: "Financial Education", author: "ATABAEV", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index4.html" },
+    { title: "University vs Job", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index5.html" },
+    { title: "Museums' Purpose", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index6.html" },
+    { title: "Equality & Success", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index10.html" },
+    { title: "Helping Communities", author: "SIMON", tag: "CEFR", score: "9.0", type: "Task 2", link: "essay/index12.html" },
+    { title: "Freedom vs Equality", author: "SIMON", tag: "TOEFL", score: "9.0", type: "Task 2", link: "essay/index11.html" },
+    { title: "Education Spending", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index8.html" },
+    { title: "Foreign Films", author: "SIMON", tag: "CEFR", score: "C2", type: "Task 2", link: "essay/index7.html" },
+    { title: "Choosing a Career Early", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index13.html" },
+    { title: "Technology and Relationships", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index14.html" },
+    { title: "Do Hobbies Need to Be Difficult?", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index15.html" },
+    { title: "Teenagers and Unpaid Work", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index16.html" },
+    { title: "Importance of Music", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index17.html" },
+    { title: "Effects of Video Games", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index18.html" },
+    { title: "Problems of Ageing Population", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index19.html" },
+    { title: "Animal Testing Debate", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index20.html" },
+    { title: "Funding Creative Artists", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index21.html" },
+    { title: "Economic Progress vs. Other Factors", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index22.html" },
+    { title: "Foreign Visitors Paying More", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index23.html" },
+    { title: "Dependence vs. Independence in Modern Society", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index24.html" },
+    { title: "Salary as the Key Job Factor", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index25.html" },
+    { title: "Fame for Glamour vs. Achievement", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index26.html" },
+    { title: "Defining and Achieving Happiness", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index27.html" },
+    { title: "Wild Animals and Resource Use", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index28.html" },
+    { title: "Fathers Stay At Home", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index29.html" },
+    { title: "Reducing Traffic Accidents", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index30.html" },
+    { title: "Older generations' Traditional Ideas", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index31.html" },
+    { title: "Being in Prison", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index32.html" },
+    { title: "The Choice Subjects for University Students", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index33.html" },
+    { title: "Language Extinction", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index2.html" },
+    { title: "Living Alone", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index36.html" },
+    { title: "Online News", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index37.html" },
+    { title: "City Life", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index38.html" },
+    { title: "Business Responsibility", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index39.html" },
+    { title: "Economic Progress", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index41.html" },
+    { title: "Climate Change", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index42.html" },
+    { title: "High Salaries", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index43.html" },
+    { title: "Extreme Sports", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index44.html" },
+    { title: "Festivals Meaning", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index45.html" },
+    { title: "Traditional Cultures", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index46.html" },
+    { title: "Online Courses", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index47.html" },
+    { title: "School Homework", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index48.html" },
+    { title: "Permissive Parenting", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index49.html" },
+    { title: "CCTV Cameras", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index50.html" },
+    { title: "Recycling Laws", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index51.html" },
+    { title: "Work Dresscode", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index52.html" },
+    { title: "Parenting Courses", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index53.html" },
+    { title: "National Literature", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index54.html" },
+    { title: "Artificial Intelligence", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index56.html" },
+    { title: "Popular Hobbies", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index57.html" },
+    { title: "Too Many Choices", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index58.html" },
+    { title: "Small Families", author: "SIMON", tag: "IELTS", score: "9.0", type: "Task 2", link: "essay/index59.html" },
+
+  { title: "", author: "", tag: "IELTS", score: "", type: "Task ", link: "essay/index.html" }
+  ];
+
+  let shown = 0;
+  const step = 7;
+
+  function createEssayBox(essay) {
+    const a = document.createElement('a');
+    a.className = 'folder';
+    a.href = essay.link;
+    a.innerHTML = `
+      <div class="folder-icon"><img src="coala.png" alt="writing com uz" style="width: 100px; height: auto;"></div>
+      <div class="essay-title">${essay.title}</div>
+      <div class="author">By ${essay.author}</div>
+      <div class="tag">${essay.tag}</div>
+      <div class="score">${essay.score}</div>
+      <div class="type">${essay.type}</div>
+    `;
+    return a;
+  }
+
+  function loadMore() {
+    const container = document.getElementById('folderGrid');
+    const next = essays.slice(shown, shown + step);
+    next.forEach(essay => container.appendChild(createEssayBox(essay)));
+    shown += step;
+    if (shown >= essays.length) document.querySelector('.more-button').style.display = 'none';
+    attachModalEvents(); // attach modal click after loading
+  }
+
+  function filterEssays() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const container = document.getElementById('folderGrid');
+    container.innerHTML = '';
+    shown = 0;
+    const filtered = essays.filter(e =>
+      e.title.toLowerCase().includes(input) || e.author.toLowerCase().includes(input)
+    );
+    filtered.forEach(essay => container.appendChild(createEssayBox(essay)));
+    document.querySelector('.more-button').style.display = filtered.length < essays.length ? 'block' : 'none';
+    attachModalEvents();
+  }
+
+  loadMore();
+
+  // Modal
+  const modal = document.getElementById("essayModal");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalAuthor = document.getElementById("modalAuthor");
+  const modalType = document.getElementById("modalType");
+  const modalAdvantage = document.getElementById("modalAdvantage");
+  const modalWordCount = document.getElementById("modalWordCount");
+  const modalBandScore = document.getElementById("modalBandScore");
+  const modalEssay = document.getElementById("modalEssay");
+  const spanClose = document.querySelector(".modal .close");
+  const printBtn = document.querySelector(".modal .printBtn");
+
+  function attachModalEvents() {
+    document.querySelectorAll('.folder').forEach((folder, index) => {
+      folder.onclick = (e) => {
+        e.preventDefault();
+        const essay = essays[index];
+        modalTitle.textContent = essay.title;
+        modalAuthor.textContent = "By " + essay.author;
+        modalType.textContent = essay.type;
+        modalAdvantage.textContent = essay.tag;
+        modalBandScore.textContent = "Band score: " + essay.score;
+
+        // 20 min before current time
+        const now = new Date();
+        now.setMinutes(now.getMinutes() - 20);
+        const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        modalWordCount.textContent = `Uploaded: ${timeString}`;
+
+        // Fetch essay content
+        fetch(essay.link)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const essayContent = doc.querySelector('body').innerHTML;
+            modalEssay.innerHTML = essayContent;
+          })
+          .catch(err => {
+            modalEssay.textContent = "Unable to load essay content.";
+            console.error(err);
+          });
+
+        modal.style.display = "block";
+      }
+    });
+  }
+
+  spanClose.onclick = () => modal.style.display = "none";
+  window.onclick = (e) => { if(e.target == modal) modal.style.display = "none"; }
+
+  printBtn.onclick = () => {
+    const printContents = modal.querySelector(".modal-content").innerHTML;
+    const originalContents = document.body.innerHTML;
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+    location.reload();
+  }
+</script>
+
+<script>
+  //live topic
+  const topics = [
+    "The IDP/Edu‑Action Centre announced that starting July 11, no more paper-format IELTS tests will be held in Uzbekistan.",
+    "This website is updated every Sunday - new topics, new essays, and news related to IELTS writing.",
+    "The British Council now offers an option for test-takers in Bangladesh to retake just one section of the IELTS (e.g., Writing) instead of the full exam—helpful for boosting targeted scores.",
+    "IDP has released the full 2025 schedule for IELTS paper-based tests globally, enabling candidates to plan their preparation timeline more effectively. ",
+    "From 1 May 2025, the UK raised English requirements for visa applicants from B1 to B2, and added requirements for adult dependents—making achieving strong IELTS results even more critical.",
+    "Several new Task 2 essay prompts have surfaced from test-takers, including topics on tourism growth, local vs. technological relationships, and fossil fuel vs. alternative energy debates."
+  ];
+
+  let topicIndex = 0;
+  let charIndex = 0;
+  const liveTopic = document.getElementById("liveTopic");
+
+  function typeTopic() {
+    if (charIndex < topics[topicIndex].length) {
+      liveTopic.textContent += topics[topicIndex].charAt(charIndex);
+      charIndex++;
+      setTimeout(typeTopic, 50); // typing speed
+    } else {
+      setTimeout(clearTopic, 2000); // wait before next topic
+    }
+  }
+
+  function clearTopic() {
+    liveTopic.textContent = "";
+    charIndex = 0;
+    topicIndex = (topicIndex + 1) % topics.length; // loop topics
+    setTimeout(typeTopic, 500); // start next topic
+  }
+  typeTopic();
+</script>
+
+<script>
+  const body = document.querySelector("body"),
+        nav = document.querySelector("nav"),
+        modeToggle = document.querySelector(".dark-light"),
+        searchToggle = document.querySelector(".searchToggle"),
+        sidebarOpen = document.querySelector(".sidebarOpen"),
+        siderbarClose = document.querySelector(".siderbarClose");
+        let getMode = localStorage.getItem("mode");
+            if(getMode && getMode === "dark-mode"){
+              body.classList.add("dark");
+            }
+  // js code to toggle dark and light mode
+        modeToggle.addEventListener("click" , () =>{
+          modeToggle.classList.toggle("active");
+          body.classList.toggle("dark");
+          // js code to keep user selected mode even page refresh or file reopen
+          if(!body.classList.contains("dark")){
+              localStorage.setItem("mode" , "light-mode");
+          }else{
+              localStorage.setItem("mode" , "dark-mode");
+          }
+        });
+  // js code to toggle search box
+          searchToggle.addEventListener("click" , () =>{
+          searchToggle.classList.toggle("active");
+        });
+   
+        
+  //   js code to toggle sidebar
+  sidebarOpen.addEventListener("click" , () =>{
+      nav.classList.add("active");
+  });
+  body.addEventListener("click" , e =>{
+      let clickedElm = e.target;
+      if(!clickedElm.classList.contains("sidebarOpen") && !clickedElm.classList.contains("menu")){
+          nav.classList.remove("active");
+      }
+  });
+  </script>
+
+
+</body>
+</html>
